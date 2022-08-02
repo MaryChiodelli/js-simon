@@ -1,5 +1,7 @@
 const numbers = [];
 const userGuess = [];
+const bodyEl = document.querySelector('body');
+
 while (numbers.length < 5) {
     const number = getRandomNumber();
     if (!numbers.includes(number)) {
@@ -12,10 +14,13 @@ alert(numbers.join(', '));
 setTimeout(() => {
     for (let i = 0; i < 5; i++) {
         const number = parseInt(prompt('Inserisci un numero.'));
-        userGuess.push(number);
+        if (numbers.includes(number)) {
+            userGuess.push(number);
+        }
     }
     console.log(userGuess);
-}, 10000);
+    bodyEl.innerHTML = `<p>Hai indovinato ${userGuess.length} numeri: ${userGuess.join(', ')}</p>`;
+}, 30000);
 
 console.log(numbers);
 
