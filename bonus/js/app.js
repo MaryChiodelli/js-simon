@@ -73,3 +73,23 @@ arrowLeftEL.addEventListener('click', function () {
     // aggiungere la classe active al list item precedente
     prevSlide.classList.add('active');
 });
+
+interval = setInterval(() => {
+    const currentSlide = slideElements[startIndex];
+    let nextSlide;
+    
+    // SE list item corrente è l'ultima
+    if (startIndex === slideElements.length - 1) {
+        // aggiungere la classe active al primo list item
+        nextSlide = slideElements[0];
+        startIndex = 0;
+    } else {
+        nextSlide = slideElements[startIndex + 1];
+        startIndex++;
+    }
+    
+    // togliere la classe active dal list item corrente
+    currentSlide.classList.remove('active');
+    // aggiungere la classe active al list item successivo
+    nextSlide.classList.add('active');
+}, 3000);
