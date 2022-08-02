@@ -34,27 +34,16 @@ for (let i = 0; i < slides.length; i++) {
     slideElements.push(li);
 }
 
-arrowRightEL.addEventListener('click', function () {
-    const currentSlide = slideElements[startIndex];
-    let nextSlide;
-    
-    // SE list item corrente è l'ultima
-    if (startIndex === slideElements.length - 1) {
-        // aggiungere la classe active al primo list item
-        nextSlide = slideElements[0];
-        startIndex = 0;
-    } else {
-        nextSlide = slideElements[startIndex + 1];
-        startIndex++;
-    }
-    
-    // togliere la classe active dal list item corrente
-    currentSlide.classList.remove('active');
-    // aggiungere la classe active al list item successivo
-    nextSlide.classList.add('active');
+arrowRightEL.addEventListener('click',function () {
+    clearInterval(interval);
+    getNextSlide();
 });
 
+let interval = setInterval(getNextSlide, 3000);
+
 arrowLeftEL.addEventListener('click', function () {
+    clearInterval(interval);
+
     const currentSlide = slideElements[startIndex];
     let prevSlide;
     
@@ -74,7 +63,7 @@ arrowLeftEL.addEventListener('click', function () {
     prevSlide.classList.add('active');
 });
 
-interval = setInterval(() => {
+function getNextSlide() {
     const currentSlide = slideElements[startIndex];
     let nextSlide;
     
@@ -92,4 +81,4 @@ interval = setInterval(() => {
     currentSlide.classList.remove('active');
     // aggiungere la classe active al list item successivo
     nextSlide.classList.add('active');
-}, 3000);
+}
